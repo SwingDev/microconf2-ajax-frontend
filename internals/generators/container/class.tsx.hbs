@@ -1,0 +1,48 @@
+import React from 'react';
+import { Action } from 'redux';
+import { connect, Dispatch } from 'react-redux';
+
+{{#if hasStateMap}}
+import { RootState } from 'store';
+{{/if}}
+
+{{#if hasStyles}}
+const styles = require('./styles.scss');
+{{/if}}
+
+{{#if hasStateMap}}
+interface StateFromProps {}
+{{/if}}
+
+interface DispatchFromProps {}
+
+export interface Props {}
+
+{{#if hasStateMap}}
+type ExtendedProps = Props & StateFromProps & DispatchFromProps;
+{{else}}
+type ExtendedProps = Props & DispatchFromProps;
+{{/if}}
+
+class {{properCase name}} extends React.Component<ExtendedProps> {
+  render() {
+    return (
+      <div className={styles.root}>
+        {{properCase name}}
+      </div>
+    );
+  }
+}
+
+{{#if hasStateMap}}
+const mapStateToProps = (state: RootState): StateFromProps => ({});
+{{/if}}
+
+const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchFromProps => ({});
+
+{{#if hasStateMap}}
+export default connect(mapStateToProps, mapDispatchToProps)({{properCase name}});
+{{else}}
+export default connect(null, mapDispatchToProps)({{properCase name}});
+{{/if}}
+

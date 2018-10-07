@@ -1,0 +1,19 @@
+import React from 'react';
+
+{{#if hasStyles}}
+const styles = require('./styles.scss');
+{{/if}}
+
+export interface Props {}
+
+class {{properCase name}} extends {{type}}<Props> {
+  render() {
+    return (
+      <div className={styles.root}>
+        {{properCase name}}
+      </div>
+    );
+  }
+}
+
+export default {{properCase name}};

@@ -1,0 +1,71 @@
+import React from 'react';
+{{#if isConnected}}
+import { Action } from 'redux';
+import { connect, Dispatch } from 'react-redux';
+{{/if}}
+{{#if withMeta}}
+import Helmet from 'react-helmet';
+{{/if}}
+
+{{#if isConnected}}
+{{#if hasStateMap}}
+import { RootState } from 'store';
+{{/if}}
+{{/if}}
+
+{{#if hasStyles}}
+const styles = require('./styles.scss');
+{{/if}}
+
+{{#if isConnected}}
+{{#if hasStateMap}}
+interface StateFromProps {}
+{{/if}}
+
+interface DispatchFromProps {}
+{{/if}}
+
+export interface Props {}
+
+{{#if isConnected}}
+{{#if hasStateMap}}
+type ExtendedProps = Props & StateFromProps & DispatchFromProps;
+{{else}}
+type ExtendedProps = Props & DispatchFromProps;
+{{/if}}
+{{/if}}
+
+{{#if isConnected}}
+class {{properCase name}}View extends React.Component<ExtendedProps> {
+{{else}}
+class {{properCase name}}View extends React.Component<Props> {
+{{/if}}
+  render() {
+    return (
+      <div className={styles.root}>
+        {{#if withMeta}}
+        <Helmet>
+          <title>{{properCase name}}</title>
+        </Helmet>
+        {{/if}}
+        {{properCase name}}
+      </div>
+    );
+  }
+}
+
+{{#if isConnected}}
+{{#if hasStateMap}}
+const mapStateToProps = (state: RootState): StateFromProps => ({});
+{{/if}}
+
+const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchFromProps => ({});
+
+{{#if hasStateMap}}
+export default connect(mapStateToProps, mapDispatchToProps)({{properCase name}}View);
+{{else}}
+export default connect(null, mapDispatchToProps)({{properCase name}}View);
+{{/if}}
+{{else}}
+export default {{properCase name}}View;
+{{/if}}

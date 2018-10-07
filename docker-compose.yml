@@ -1,0 +1,17 @@
+version: '2'
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        ENV_FILE: workshop
+    command: yarn start
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - "./src:/app/src"
+      - "./server:/app/server"
+      - "./.env.workshop:/app/.env"
+      - "./package.json:/app/package.json"
+    environment:
+      PORT: 8080

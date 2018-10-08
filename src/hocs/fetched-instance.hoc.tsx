@@ -1,7 +1,8 @@
 // tslint:disable:max-line-length
 
 import React, { ReactNode } from 'react';
-import Segment from 'semantic-ui-react/dist/commonjs/elements/Segment/Segment';
+import Container from 'semantic-ui-react/dist/commonjs/elements/Container/Container';
+import Loader from 'semantic-ui-react/dist/commonjs/elements/Loader/Loader';
 
 import { IErrorHandlingContext, ErrorWithId } from '../contexts/global-error-list.context';
 import { InstanceWithId } from '../interfaces/resources.interface';
@@ -63,12 +64,12 @@ export const withFetchedInstance = <P extends WithFetchedInstanceSetProps<T>, FP
 
     render(): ReactNode {
       if (configurationService.hasSpinners && this.state.isLoading) {
-        return <Segment loading style={{ height: '100px' }} />;
+        return <Container><Loader active inline='centered' size='tiny' /></Container>;
       } else {
         if (this.state.instance) {
           return <Component {...this.props} instance={this.state.instance} />;
         } else {
-          return <Segment> - </Segment>;
+          return <div />;
         }
       }
     }

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Button, ButtonProps } from 'semantic-ui-react';
+import Button, { ButtonProps } from 'semantic-ui-react/dist/commonjs/elements/Button';
 
 import { ErrorWithId, IErrorHandlingContext, withErrorHandling } from '../contexts/global-error-list.context';
 import { configurationService } from '../services';

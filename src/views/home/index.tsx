@@ -40,6 +40,14 @@ const HomeView: React.StatelessComponent<{}> = () => (
                     <Dropdown.Item
                       content={
                         <ConfigurationToggle
+                          configurationKey='shouldUseHttp2'
+                          label='Use HTTP/2'
+                        />
+                      }
+                    />
+                    <Dropdown.Item
+                      content={
+                        <ConfigurationToggle
                           configurationKey='shouldMemoizeApiRequests'
                           label='Memoize ongoing requests'
                         />

@@ -7,6 +7,8 @@ export class ConfigurationService {
 
   get hasSpinners(): boolean { return this.getParam('spinners'); }
   set hasSpinners(value: boolean) { this.setParam('spinners', value); }
+  get shouldUseHttp2(): boolean { return this.getParam('http2'); }
+  set shouldUseHttp2(value: boolean) { this.setParam('http2', value); }
   get shouldBatchApiRequests(): boolean { return this.getParam('batch'); }
   set shouldBatchApiRequests(value: boolean) { this.setParam('batch', value); }
   get shouldRetryApiRequests(): boolean { return this.getParam('retry'); }

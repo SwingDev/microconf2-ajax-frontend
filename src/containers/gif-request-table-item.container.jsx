@@ -19,6 +19,7 @@ export class GIFRequestTableItem extends React.Component {
         gifId: props.gifId,
         startedAt: new Date(),
         status: 'pending',
+        gif: undefined,
         error: undefined
       };
     }
@@ -52,7 +53,8 @@ export class GIFRequestTableItem extends React.Component {
 
       return {
         finishedAt: new Date(),
-        status: 'completed'
+        status: 'completed',
+        gif: gif
       };
     });
   }
@@ -66,6 +68,7 @@ export class GIFRequestTableItem extends React.Component {
       return {
         finishedAt: new Date(),
         status: 'failed',
+        gif: undefined,
         error: err
       };
     });
@@ -79,7 +82,15 @@ export class GIFRequestTableItem extends React.Component {
   }
 
   get details() {
-    return this.state.error ? this.state.error.message : '-';
+    switch (this.state.status) {
+      case 'failed':
+        return this.state.error ? this.state.error.message : '-';
+      case 'completed':
+        return this.state.gif ? <img height={50} src={this.state.gif.image} /> : '-';
+      default:
+        return '-';
+    }
+
   }
 
   render() {

@@ -15,7 +15,7 @@ export const RequestTableItem = (props) => {
   };
 
   return (
-    <Table.Row>
+    <Table.Row style={{ height: '65px' }}>
       <Table.Cell style={cellStyle}>
         <Label ribbon>{name}</Label>
       </Table.Cell>
